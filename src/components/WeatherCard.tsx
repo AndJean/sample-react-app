@@ -16,6 +16,7 @@ const WeatherCard: React.FC = () => {
   const [loadingState, setLoadingState] = useState(false);
   const [city, setCity] = useState("");
   const [error, setError] = useState("");
+  const [date, setDate] = useState("");
 
   const handleSearch = () => {
     console.log("Fetching Weather Data...");
@@ -26,7 +27,7 @@ const WeatherCard: React.FC = () => {
         setError("");
         if (res) {
           console.log(res);
-          setData(res);
+          setData({...res, date});
           setLoadingState(false);
         }
       })
@@ -46,7 +47,17 @@ const WeatherCard: React.FC = () => {
             e.preventDefault();
             handleSearch();
           }}
-        >
+        ><div className="flex flex-col w-full p-2 space-y-4">
+        <Input
+          id="date"
+          type="date"
+          label="Date"
+          value={date}
+          onChange={(e) => {
+            setDate(e.target.value);
+          }}
+        />
+      </div>
           <div className="flex flex-col w-full p-2 space-y-4">
             <Input
               id="cityname"
@@ -66,12 +77,14 @@ const WeatherCard: React.FC = () => {
               Search
             </Button>
           </div>
+          
         </form>
       </CardHeader>
       <Divider />
       {data ? (
         <CardBody>
           <div className="flex flex-col items-center">
+            <h1 className="text-3xl font-bold">{data.date}</h1>
             <h1 className="text-3xl font-bold">{data.city}</h1>
             {data.temperature > 20 ? (
               <div>
