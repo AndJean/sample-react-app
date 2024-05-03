@@ -7,7 +7,7 @@ const App = () => {
   return (
     <div className="flex flex-col h-screen">
       <NavBar />
-      <div className="flex flex-1 overflow-auto items-center gap-5 align-middle justify-center  h-full w-full">
+      <div className="flex flex-1 overflow-auto items-center gap-20 align-middle justify-center  h-full w-full">
         <WeatherCard />
         <ShoesCard />
       </div>
